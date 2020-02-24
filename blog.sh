@@ -30,10 +30,12 @@ else
     					CURRENT_DATE=`date +"%Y-%m-%d"`
     					POST_NAME="_posts/${CURRENT_DATE}-$2.html"
     					if [ -f ${POST_NAME} ]; then 
-    						echo "post ${POST_NAME} already exists"
+    						cat drafts/$2.md > ${POST_NAME}
+                            echo "post created: ${POST_NAME}" 
     					else 
 							cat drafts/$2.md > ${POST_NAME}
 							echo "post created: ${POST_NAME}" 
+                            git add ${POST_NAME}
 						fi
     				else
     					echo "No draft named drafts/$2.md found"
